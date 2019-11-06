@@ -22,11 +22,11 @@ namespace BD8
 
             //======================================================================================================================
             // Определяем строку с текстом запроса
-            string strSQL = "SELECT COUNT(n_det) FROM pmib6602.p";
+            /*string strSQL = "SELECT COUNT(n_det) FROM pmib6602.p";
             // Создаем объект запроса
             OdbcCommand cmd = new OdbcCommand(strSQL, conn);
             // Создаем первый параметр
-            /*OdbcParameter par_name = new OdbcParameter();
+            OdbcParameter par_name = new OdbcParameter();
             par_name.ParameterName = "@vname";
             par_name.OdbcType = OdbcType.Text;
             par_name.Value = "Кулер";
@@ -38,7 +38,7 @@ namespace BD8
             par_town.OdbcType = OdbcType.Text;
             par_town.Value = "P3";
             // Добавляем второй параметр в коллекцию.
-            cmd.Parameters.Add(par_town);*/
+            cmd.Parameters.Add(par_town);
             // Объявляем объект транзакции
             OdbcTransaction tx = null;
             try
@@ -62,7 +62,7 @@ namespace BD8
                 // выполняем откат транзакции 
                 tx.Rollback();
             }
-            
+            */
             //закрываем соединение
             //conn.Close();
 
@@ -71,6 +71,11 @@ namespace BD8
         }
 
         protected void Button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

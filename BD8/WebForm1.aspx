@@ -41,10 +41,14 @@
             <asp:Label ID="Label5" runat="server" Font-Bold="True" Font-Size="X-Large" Font-Underline="False" Text="Информация о деталях:"></asp:Label>
         </p>
         <p>
-            <asp:GridView ID="GridView1" runat="server" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None">
+            <asp:GridView ID="GridView1" runat="server" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None" AutoGenerateColumns="False" DataKeyNames="n_det" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
                 <AlternatingRowStyle BackColor="PaleGoldenrod" />
                 <Columns>
-                    <asp:BoundField />
+                    <asp:BoundField DataField="n_det" HeaderText="Номер детали" ReadOnly="True" SortExpression="n_det" />
+                    <asp:BoundField DataField="name" HeaderText="name" ReadOnly="True" SortExpression="name" />
+                    <asp:BoundField DataField="cvet" HeaderText="cvet" ReadOnly="True" SortExpression="cvet" />
+                    <asp:BoundField DataField="ves" HeaderText="ves" ReadOnly="True" SortExpression="ves" />
+                    <asp:BoundField DataField="town" HeaderText="town" ReadOnly="True" SortExpression="town" />
                 </Columns>
                 <FooterStyle BackColor="Tan" />
                 <HeaderStyle BackColor="Tan" Font-Bold="True" />
@@ -55,6 +59,27 @@
                 <SortedDescendingCellStyle BackColor="#E1DB9C" />
                 <SortedDescendingHeaderStyle BackColor="#C2A47B" />
             </asp:GridView>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:studentsConnectionString %>" ProviderName="<%$ ConnectionStrings:studentsConnectionString.ProviderName %>" SelectCommand="SELECT *
+FROM pmib6602.p
+WHERE n_det IN (
+	SELECT post.n_det
+	FROM(
+		SELECT spj1.n_izd, spj1.n_det, SUM(kol) kol_post
+		FROM pmib6602.spj1
+		GROUP BY spj1.n_izd, spj1.n_det
+		HAVING LOWER(spj1.n_izd) = LOWER(?))AS post 
+	RIGHT JOIN (
+		SELECT n_q, n_izd, n_det, (kol*?) kol_need
+		FROM pmib6602.q
+		WHERE LOWER(n_izd) = LOWER(?)) AS norma ON norma.n_det = post.n_det
+	WHERE kol_post &lt; kol_need)
+ORDER BY p.n_det">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="TextBox1" DefaultValue="" Name="izd1" PropertyName="Text" Type="String" />
+                    <asp:ControlParameter ControlID="TextBox2" DefaultValue="" Name="kol1" PropertyName="Text" Type="Int32" />
+                    <asp:ControlParameter ControlID="TextBox1" DefaultValue="" Name="izd2" PropertyName="Text" Type="String" />
+                </SelectParameters>
+            </asp:SqlDataSource>
         </p>
     </form>
 </body>
