@@ -39,7 +39,7 @@
             <asp:Label ID="Label5" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Лог программы:"></asp:Label>
         </p>
         <p>
-            <asp:TextBox ID="txtlog" runat="server" BorderWidth="2px" Font-Size="Large" Height="155px" ToolTip="Введите название изделие" Width="424px" Font-Bold="True" TextMode="MultiLine"></asp:TextBox>
+            <asp:TextBox ID="txtlog" runat="server" BorderWidth="2px" Font-Size="Large" Height="180px" ToolTip="Введите название изделие" Width="535px" Font-Bold="True" TextMode="MultiLine"></asp:TextBox>
         </p>
     </form>
 </body>

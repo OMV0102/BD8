@@ -27,7 +27,7 @@
         <p>
             <asp:Label ID="Label3" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Количество изделия:"></asp:Label>
 &nbsp;
-            <asp:TextBox ID="TextBox2" runat="server" BorderWidth="2px" Font-Size="X-Large" Height="25px" MaxLength="20" ToolTip="Введите название изделие" Width="110px"></asp:TextBox>
+            <asp:TextBox ID="TextBox2" runat="server" BorderWidth="2px" Font-Size="X-Large" Height="25px" MaxLength="20" ToolTip="Введите название изделие" Width="110px" TextMode="Number"></asp:TextBox>
         </p>
         <p>
             &nbsp;</p>
