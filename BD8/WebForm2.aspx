@@ -27,11 +27,19 @@
 &nbsp;&nbsp;&nbsp;
             <asp:Label ID="Label3" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Число:"></asp:Label>
 &nbsp;
-            <asp:TextBox ID="TextBox2" runat="server" BorderWidth="2px" Font-Size="X-Large" Height="25px" MaxLength="13" ToolTip="Введите название изделие" Width="110px"></asp:TextBox>
+            <asp:TextBox ID="TextBox2" runat="server" BorderWidth="2px" Font-Size="X-Large" Height="25px" MaxLength="13" ToolTip="Введите название изделие" Width="110px" TextMode="Number"></asp:TextBox>
         </p>
         <p>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="Button1" runat="server" Font-Bold="True" Font-Italic="False" Font-Size="Large" OnClick="Button1_Click" Text="Выполнить запрос" Width="270px" />
+        </p>
+        <p>
+            &nbsp;</p>
+        <p>
+            <asp:Label ID="Label5" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Лог программы:"></asp:Label>
+        </p>
+        <p>
+            <asp:TextBox ID="txtlog" runat="server" BorderWidth="2px" Font-Size="Large" Height="155px" ToolTip="Введите название изделие" Width="424px" Font-Bold="True" TextMode="MultiLine"></asp:TextBox>
         </p>
     </form>
 </body>
