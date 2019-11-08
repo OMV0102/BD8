@@ -19,7 +19,12 @@
         <p>
             <asp:Label ID="Label2" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Название изделия:"></asp:Label>
 &nbsp;&nbsp;
-            <asp:TextBox ID="TextBox1" runat="server" BorderWidth="2px" Font-Size="X-Large" Height="25px" MaxLength="3" ToolTip="Введите название изделие" Width="110px"></asp:TextBox>
+            <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource3" DataTextField="n_izd" DataValueField="n_izd" Font-Bold="True" Font-Size="X-Large" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                <asp:ListItem Selected="True"></asp:ListItem>
+            </asp:DropDownList>
+            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:studentsConnectionString2 %>" ProviderName="<%$ ConnectionStrings:studentsConnectionString2.ProviderName %>" SelectCommand="SELECT DISTINCT n_izd
+FROM pmib6602.j
+ORDER BY n_izd"></asp:SqlDataSource>
         </p>
         <p>
             &nbsp;</p>
