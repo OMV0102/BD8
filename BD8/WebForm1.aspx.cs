@@ -14,10 +14,6 @@ namespace BD8
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            OdbcConnection conn = new OdbcConnection(); // Создаем объект подключения
-            conn.ConnectionString = "Dsn=PostgreSQL16"; // Задаем параметр подключения – имя ODBC-источника
-            conn.Open(); // Подключаемся к БД
             
         }
 
