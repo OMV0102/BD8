@@ -44,7 +44,7 @@ ORDER BY n_izd"></asp:SqlDataSource>
             <asp:Label ID="Label5" runat="server" Font-Bold="True" Font-Size="X-Large" Font-Underline="False" Text="Информация о деталях:"></asp:Label>
         </p>
         <p>
-            <asp:GridView ID="GridView1" runat="server" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None" AutoGenerateColumns="False" DataKeyNames="n_det" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Font-Size="Large">
+            <asp:GridView ID="GridView1" runat="server" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="False" DataKeyNames="n_det" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Font-Size="Large" EnableSortingAndPagingCallbacks="True">
                 <AlternatingRowStyle BackColor="PaleGoldenrod" />
                 <Columns>
                     <asp:BoundField DataField="n_det" HeaderText="№ детали" ReadOnly="True" SortExpression="n_det" />

@@ -22,7 +22,7 @@
             <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource3" DataTextField="n_izd" DataValueField="n_izd" Font-Bold="True" Font-Size="X-Large" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
                 <asp:ListItem Selected="True"></asp:ListItem>
             </asp:DropDownList>
-            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:studentsConnectionString2 %>" ProviderName="<%$ ConnectionStrings:studentsConnectionString2.ProviderName %>" SelectCommand="SELECT DISTINCT n_izd
+            <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:studentsConnectionString3 %>" ProviderName="<%$ ConnectionStrings:studentsConnectionString3.ProviderName %>" SelectCommand="SELECT DISTINCT n_izd
 FROM pmib6602.j
 ORDER BY n_izd"></asp:SqlDataSource>
         </p>

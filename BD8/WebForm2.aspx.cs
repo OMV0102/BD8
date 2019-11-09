@@ -15,6 +15,11 @@ namespace BD8
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
             txtlog.Text = "";
             // Создаем объект подключения
             txtlog.Text += "Создаем объект подключения\n";
@@ -25,69 +30,69 @@ namespace BD8
             // Подключаемся к БД
             txtlog.Text += "Подключаемся к БД\n";
             conn.Open();
-        }
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
             int chislo = 0;
-            bool check = true;
+            bool check;
 
             txtlog.Text += "Проверка введеных данных...\n";
-            if (TextBox1.Text.Length != 0)
-            {
-                txtlog.Text += "Название изделия ("+ TextBox1.Text.ToString()+") принято\n";
-                if (TextBox2.Text.Length != 0)
-                { 
-                    if(Int32.TryParse(TextBox2.Text.ToString(), out chislo) == true)
-                    {
-                        txtlog.Text += "Введенное число (" + chislo + ") принято\n";
-                    }
-                    else
-                    {
-                        txtlog.Text += "Ошибка: Введенно неккорректное число!\n";
-                        check = false;
-                    }
+            check = true;
+            if (TextBox2.Text.Length != 0)
+            { 
+                if(Int32.TryParse(TextBox2.Text.ToString(), out chislo) == true)
+                {
+                    txtlog.Text += "Введенное число (" + chislo + ") принято\n";
                 }
                 else
                 {
-                    txtlog.Text += "Ошибка: Введите число!\n";
+                    txtlog.Text += "Ошибка: Введенно неккорректное число!\n";
                     check = false;
                 }
             }
-            else 
+            else
             {
-                txtlog.Text += "Ошибка: Введите название изделия!\n";
+                txtlog.Text += "Ошибка: Введите число!\n";
                 check = false;
             }
 
-            check = false;
             if (check == true)
             {
-
                 // Определяем строку с текстом запроса
                 txtlog.Text += "Определяем строку с текстом запроса\n";
-                string strSQL = "UPDATE pmib6602.spj1 SET kol = kol + ? WHERE n_spj IN( SELECT n_spj FROM pmib6602.spj1 LEFT JOIN( SELECT n_det, MAX(date_post) date_last FROM pmib6602.spj1 WHERE LOWER(n_izd) = LOWER(?) GROUP BY n_det) AS tab ON tab.n_det = spj1.n_det WHERE date_post = date_last)";
+                string strSQL =
+                " UPDATE pmib6602.spj1 " +
+                " SET kol = kol + ? " +
+                " WHERE CAST(TRIM(LEADING 'N' FROM n_spj) AS INT) IN ( " +
+                    " SELECT MAX(CAST(TRIM(LEADING 'N' FROM spj1.n_spj) AS int)) n_spj " +
+                    " FROM pmib6602.spj1 " +
+                    " JOIN ( " +
+                        " SELECT n_det, MAX(date_post) date_last " +
+                        " FROM pmib6602.spj1 " +
+                        " WHERE n_izd = TRIM(?) " +
+                        " GROUP BY n_det) AS tab ON tab.n_det = spj1.n_det " +
+                    " WHERE date_post = date_last " +
+                    " GROUP BY spj1.n_det) ";
+
                 // Создаем объект запроса
                 txtlog.Text += "Создаем объект запроса\n";
                 OdbcCommand cmd = new OdbcCommand(strSQL, conn);
+
                 // Создаем первый параметр
                 txtlog.Text += "Создаем первый параметр и добавляем его\n";
-                OdbcParameter par_name = new OdbcParameter();
-                par_name.ParameterName = "@vkolnew";
-                par_name.OdbcType = OdbcType.Int;
-                par_name.Value = chislo;
+                OdbcParameter par_kol = new OdbcParameter();
+                par_kol.ParameterName = "@vkolnew";
+                par_kol.OdbcType = OdbcType.Int;
+                par_kol.Value = chislo;
                 // Добавляем первый параметр в коллекцию
-                cmd.Parameters.Add(par_name);
+                cmd.Parameters.Add(par_kol);
 
                 // Создаем второй параметр
-
                 txtlog.Text += "Создаем второй параметр и добавляем его\n";
-                OdbcParameter par_town = new OdbcParameter();
-                par_town.ParameterName = "@vn_izd";
-                par_town.OdbcType = OdbcType.Text;
-                par_town.Value = TextBox1.Text.ToString();
+                OdbcParameter par_izd = new OdbcParameter();
+                par_izd.ParameterName = "@vn_izd";
+                par_izd.OdbcType = OdbcType.Text;
+                par_izd.Value = DropDownList1.SelectedValue.ToString();
                 // Добавляем второй параметр в коллекцию.
-                cmd.Parameters.Add(par_town);
+                cmd.Parameters.Add(par_izd);
 
                 // Объявляем объект транзакции
                 txtlog.Text += "Объявляем объект транзакции\n";
@@ -111,15 +116,21 @@ namespace BD8
                 {
                     // При возникновении любой ошибки 
                     // Формируем сообщение об ошибке 
+                    txtlog.Text += "Транзакция не завершена, произошла ошибка...\n";
                     txtlog.Text += ex.Message;
+                    txtlog.Text += "\n";
                     // выполняем откат транзакции 
                     tx.Rollback();
                 }
-
+            }
                 //закрываем соединение
                 txtlog.Text += "Закрываем соединение с БД\n";
                 conn.Close();
-            }
+        }
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
