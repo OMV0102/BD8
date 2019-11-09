@@ -65,16 +65,16 @@ ORDER BY n_izd"></asp:SqlDataSource>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:studentsConnectionString %>" ProviderName="<%$ ConnectionStrings:studentsConnectionString.ProviderName %>" SelectCommand="SELECT *
 FROM pmib6602.p
 WHERE n_det IN (
-	SELECT post.n_det
+	SELECT post1.n_det
 	FROM(
-		SELECT spj1.n_izd, spj1.n_det, SUM(kol) kol_post
+		SELECT spj1.n_det, SUM(kol) kol_post
 		FROM pmib6602.spj1
-		GROUP BY spj1.n_izd, spj1.n_det
-		HAVING LOWER(spj1.n_izd) = LOWER(TRIM(?)))AS post 
+		WHERE spj1.n_izd = TRIM(?)
+		GROUP BY spj1.n_izd, spj1.n_det )AS post1
 	RIGHT JOIN (
 		SELECT n_q, n_izd, n_det, (kol*?) kol_need
 		FROM pmib6602.q
-		WHERE LOWER(n_izd) = LOWER(TRIM(?))) AS norma ON norma.n_det = post.n_det
+		WHERE n_izd = TRIM(?)) AS norma ON norma.n_det = post1.n_det
 	WHERE kol_post &lt; kol_need)
 ORDER BY p.n_det">
                 <SelectParameters>
