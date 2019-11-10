@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <title>Приложение</title>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -27,8 +27,6 @@
 FROM pmib6602.j
 ORDER BY n_izd"></asp:SqlDataSource>
         </p>
-        <p>
-            &nbsp;</p>
         <p style="margin-left: 120px">
 &nbsp;&nbsp;&nbsp;
             <asp:Label ID="Label3" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Число:"></asp:Label>
@@ -42,18 +40,19 @@ ORDER BY n_izd"></asp:SqlDataSource>
             <asp:Button ID="Button3" runat="server" Font-Bold="True" Font-Italic="False" Font-Size="Large" OnClick="Button3_Click" Text="Обновить таблицу" Width="270px" />
         </p>
         <p>
-            &nbsp;</p>
+            <asp:TextBox ID="txtlog" runat="server" BorderWidth="2px" Font-Size="Large" Height="55px" Width="420px" Font-Bold="True" TextMode="MultiLine"></asp:TextBox>
+        </p>
         <p>
-            <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="2px" CellPadding="2" DataKeyNames="n_spj" DataSourceID="SqlDataSource1" Font-Size="Large" ForeColor="Black" OnDataBinding="GridView2_DataBinding">
+            <asp:GridView ID="GridView2" runat="server" AllowSorting="True" AutoGenerateColumns="False" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="2px" Caption="Поставки по выбранному изделию:" CellPadding="2" DataKeyNames="n_spj" DataSourceID="SqlDataSource1" EnableViewState="False" Font-Size="Large" ForeColor="Black" HorizontalAlign="Center" OnDataBinding="GridView2_DataBinding">
                 <AlternatingRowStyle BackColor="PaleGoldenrod" />
                 <Columns>
-                    <asp:BoundField DataField="n_spj" HeaderText="n_spj" ReadOnly="True" SortExpression="n_spj" />
-                    <asp:BoundField DataField="n_post" HeaderText="n_post" SortExpression="n_post" />
-                    <asp:BoundField DataField="n_det" HeaderText="n_det" SortExpression="n_det" />
-                    <asp:BoundField DataField="n_izd" HeaderText="n_izd" SortExpression="n_izd" />
-                    <asp:BoundField DataField="kol" HeaderText="kol" SortExpression="kol" />
-                    <asp:BoundField DataField="date_post" HeaderText="date_post" SortExpression="date_post" />
-                    <asp:BoundField DataField="cost" HeaderText="cost" SortExpression="cost" />
+                    <asp:BoundField DataField="n_spj" HeaderText="№ поставки" ReadOnly="True" SortExpression="n_spj" />
+                    <asp:BoundField DataField="n_post" HeaderText="№ поставщика" SortExpression="n_post" />
+                    <asp:BoundField DataField="n_det" HeaderText="№ детали" SortExpression="n_det" />
+                    <asp:BoundField DataField="n_izd" HeaderText="№ изделия" SortExpression="n_izd" />
+                    <asp:BoundField DataField="kol" HeaderText="Кол-во деталей" SortExpression="kol" />
+                    <asp:BoundField DataField="date_post" HeaderText="Дата" SortExpression="date_post" />
+                    <asp:BoundField DataField="cost" HeaderText="Цена за 1 дет." SortExpression="cost" />
                 </Columns>
                 <FooterStyle BackColor="Tan" />
                 <HeaderStyle BackColor="Tan" Font-Bold="True" />
@@ -74,11 +73,9 @@ ORDER BY n_det, date_post, CAST(TRIM(LEADING 'N' FROM n_spj) AS INT)">
             </asp:SqlDataSource>
         </p>
         <p>
-            <asp:Label ID="Label5" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Лог программы:"></asp:Label>
-        </p>
+            &nbsp;</p>
         <p>
-            <asp:TextBox ID="txtlog" runat="server" BorderWidth="2px" Font-Size="Large" Height="215px" Width="535px" Font-Bold="True" TextMode="MultiLine"></asp:TextBox>
-        </p>
+            &nbsp;</p>
         <p>
             &nbsp;</p>
     </form>

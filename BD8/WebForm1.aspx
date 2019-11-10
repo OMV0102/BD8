@@ -42,7 +42,7 @@ ORDER BY n_izd"></asp:SqlDataSource>
         <p>
             &nbsp;</p>
         <p>
-            <asp:GridView ID="GridView1" runat="server" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="Horizontal" AutoGenerateColumns="False" DataKeyNames="n_det" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Font-Size="X-Large" EnableSortingAndPagingCallbacks="True">
+            <asp:GridView ID="GridView1" runat="server" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" AutoGenerateColumns="False" DataKeyNames="n_det" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Font-Size="X-Large" EnableSortingAndPagingCallbacks="True" AllowSorting="True" Caption="Детали, которых не хватает:" EnableViewState="False">
                 <AlternatingRowStyle BackColor="PaleGoldenrod" />
                 <Columns>
                     <asp:BoundField DataField="n_det" HeaderText="№ детали" ReadOnly="True" SortExpression="n_det" />
