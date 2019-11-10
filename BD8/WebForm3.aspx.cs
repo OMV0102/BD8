@@ -16,5 +16,17 @@ namespace BD8
 
 
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            // Перейти на другую Web-форму, сохранив состояние отображения.
+            Server.Transfer("WebForm1.aspx", true);
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            // Перейти на другую Web-форму, сохранив состояние отображения.
+            Server.Transfer("WebForm2.aspx", true);
+        }
     }
 }

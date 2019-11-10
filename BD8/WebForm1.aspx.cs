@@ -14,7 +14,8 @@ namespace BD8
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
+
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -30,6 +31,12 @@ namespace BD8
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            // Перейти на другую Web-форму, сохранив состояние отображения.
+            Server.Transfer("WebForm3.aspx", true);
         }
     }
 }

@@ -64,7 +64,7 @@ namespace BD8
                 txtlog.Text += "Определяем строку с текстом запроса\n";
                 string strSQL =
                 " UPDATE pmib6602.spj1 " +
-                " SET kol = kol - ? " +
+                " SET kol = kol + ? " +
                 " WHERE CAST(TRIM(LEADING 'N' FROM n_spj) AS INT) IN ( " +
                     " SELECT MAX(CAST(TRIM(LEADING 'N' FROM spj1.n_spj) AS int)) n_spj " +
                     " FROM pmib6602.spj1 " +
@@ -131,11 +131,32 @@ namespace BD8
                 //закрываем соединение
                 txtlog.Text += "Закрываем соединение с БД\n";
                 conn.Close();
+
+            GridView2.EditIndex = -1;
+            GridView2.DataBind();
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
+        }
 
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            // Перейти на другую Web-форму, сохранив состояние отображения.
+            Server.Transfer("WebForm3.aspx", true);
+        }
+
+        //кнопка обновлялка формы
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            GridView2.EditIndex = -1;
+            GridView2.DataBind();
+        }
+
+        protected void GridView2_DataBinding(object sender, EventArgs e)
+        {
+            
         }
     }
 }
