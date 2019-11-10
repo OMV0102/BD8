@@ -11,15 +11,18 @@ namespace BD8
     public partial class WebForm2 : System.Web.UI.Page
     {
         OdbcConnection conn; //объект подключения
-        //txtlog.Text += "\n";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            Label5.Visible = false;
+            txtlog.Visible = false;
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            Label5.Visible = true;
+            txtlog.Visible = true;
+
             txtlog.Text = "";
             // Создаем объект подключения
             txtlog.Text += "Создаем объект подключения\n";
@@ -34,6 +37,7 @@ namespace BD8
             int chislo = 0;
             bool check;
 
+            //Проверка введенного числа
             txtlog.Text += "Проверка введеных данных...\n";
             check = true;
             if (TextBox2.Text.Length != 0)
@@ -60,7 +64,7 @@ namespace BD8
                 txtlog.Text += "Определяем строку с текстом запроса\n";
                 string strSQL =
                 " UPDATE pmib6602.spj1 " +
-                " SET kol = kol + ? " +
+                " SET kol = kol - ? " +
                 " WHERE CAST(TRIM(LEADING 'N' FROM n_spj) AS INT) IN ( " +
                     " SELECT MAX(CAST(TRIM(LEADING 'N' FROM spj1.n_spj) AS int)) n_spj " +
                     " FROM pmib6602.spj1 " +
@@ -111,6 +115,7 @@ namespace BD8
                     // Подтверждаем транзакцию 
                     txtlog.Text += "Подтверждаем транзакцию \n";
                     tx.Commit();
+                    txtlog.Text += "Обработано " + i + " запис(ь/и/ей)\n";
                 }
                 catch (Exception ex)
                 {

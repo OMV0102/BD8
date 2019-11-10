@@ -20,7 +20,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="Label2" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Название изделия:"></asp:Label>
 &nbsp;
-            <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource2" DataTextField="n_izd" DataValueField="n_izd" Font-Bold="True" Font-Size="X-Large" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+            <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource2" DataTextField="n_izd" DataValueField="n_izd" Font-Bold="True" Font-Size="X-Large" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" ToolTip="Выберите изделие">
                 <asp:ListItem Selected="True"></asp:ListItem>
             </asp:DropDownList>
             <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:studentsConnectionString2 %>" ProviderName="<%$ ConnectionStrings:studentsConnectionString2.ProviderName %>" SelectCommand="SELECT DISTINCT n_izd
@@ -30,7 +30,7 @@ ORDER BY n_izd"></asp:SqlDataSource>
         <p>
             <asp:Label ID="Label3" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Количество изделия:"></asp:Label>
 &nbsp;
-            <asp:TextBox ID="TextBox2" runat="server" BorderWidth="1px" Font-Size="X-Large" Height="25px" MaxLength="20" ToolTip="Введите название изделие" Width="110px" TextMode="Number" style="font-weight: 700"></asp:TextBox>
+            <asp:TextBox ID="TextBox2" runat="server" BorderWidth="1px" Font-Size="X-Large" Height="25px" MaxLength="20" ToolTip="Введите название изделие" Width="110px" TextMode="Number" style="font-weight: 700" Wrap="False"></asp:TextBox>
         </p>
         <p>
             &nbsp;</p>

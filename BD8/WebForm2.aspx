@@ -19,7 +19,7 @@
         <p>
             <asp:Label ID="Label2" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Название изделия:"></asp:Label>
 &nbsp;&nbsp;
-            <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource3" DataTextField="n_izd" DataValueField="n_izd" Font-Bold="True" Font-Size="X-Large" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+            <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource3" DataTextField="n_izd" DataValueField="n_izd" Font-Bold="True" Font-Size="X-Large" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" ToolTip="Выберите изделие">
                 <asp:ListItem Selected="True"></asp:ListItem>
             </asp:DropDownList>
             <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:studentsConnectionString3 %>" ProviderName="<%$ ConnectionStrings:studentsConnectionString3.ProviderName %>" SelectCommand="SELECT DISTINCT n_izd
@@ -32,7 +32,7 @@ ORDER BY n_izd"></asp:SqlDataSource>
 &nbsp;&nbsp;&nbsp;
             <asp:Label ID="Label3" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Число:"></asp:Label>
 &nbsp;
-            <asp:TextBox ID="TextBox2" runat="server" BorderWidth="2px" Font-Size="X-Large" Height="25px" MaxLength="13" ToolTip="Введите название изделие" Width="110px" TextMode="Number"></asp:TextBox>
+            <asp:TextBox ID="TextBox2" runat="server" BorderWidth="2px" Font-Size="X-Large" Height="25px" MaxLength="13" ToolTip="Введите число" Width="110px" TextMode="Number" Wrap="False"></asp:TextBox>
         </p>
         <p>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -44,7 +44,7 @@ ORDER BY n_izd"></asp:SqlDataSource>
             <asp:Label ID="Label5" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Лог программы:"></asp:Label>
         </p>
         <p>
-            <asp:TextBox ID="txtlog" runat="server" BorderWidth="2px" Font-Size="Large" Height="180px" ToolTip="Введите название изделие" Width="535px" Font-Bold="True" TextMode="MultiLine"></asp:TextBox>
+            <asp:TextBox ID="txtlog" runat="server" BorderWidth="2px" Font-Size="Large" Height="180px" Width="535px" Font-Bold="True" TextMode="MultiLine"></asp:TextBox>
         </p>
     </form>
 </body>
