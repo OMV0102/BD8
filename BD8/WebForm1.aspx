@@ -73,7 +73,7 @@ WHERE n_det IN (
 		SELECT n_q, n_izd, n_det, (kol*?) kol_need
 		FROM pmib6602.q
 		WHERE n_izd = TRIM(?)) AS norma ON norma.n_det = post1.n_det
-	WHERE kol_post &lt; kol_need)
+	WHERE NOT(kol_post &gt;= kol_need))
 ORDER BY p.n_det">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="izd1" PropertyName="SelectedValue" Type="String" />
