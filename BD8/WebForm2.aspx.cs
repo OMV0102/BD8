@@ -50,7 +50,7 @@ namespace BD8
                 // Определяем строку с текстом запроса
                 string strSQL =
                 " UPDATE pmib6602.spj1 " +
-                " SET kol = kol - ? " +
+                " SET kol = kol + ? " +
                 " WHERE CAST(TRIM(LEADING 'N' FROM n_spj) AS INT) IN ( " +
                     " SELECT MAX(CAST(TRIM(LEADING 'N' FROM spj1.n_spj) AS int)) n_spj " +
                     " FROM pmib6602.spj1 " +

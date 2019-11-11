@@ -10,7 +10,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:Button ID="Button2" runat="server" Font-Bold="True" Font-Italic="False" Font-Size="Large" OnClick="Button2_Click" Text="На главную" Width="219px" />
+            &nbsp;<asp:Button ID="Button2" runat="server" Font-Bold="True" Font-Italic="False" Font-Size="Large" OnClick="Button2_Click" Text="На главную" Width="219px" />
             </div>
         <p>
             <asp:Label ID="Label4" runat="server" Font-Bold="True" Font-Size="X-Large" Font-Underline="False" Text="Получить информацию о деталях, которых в настоящий момент не хватает для изготовления заданного количества указанного изделия."></asp:Label>
@@ -68,7 +68,7 @@ WHERE n_det IN (
 		SELECT spj1.n_det, SUM(kol) kol_post
 		FROM pmib6602.spj1
 		WHERE spj1.n_izd = TRIM(?)
-		GROUP BY spj1.n_izd, spj1.n_det )AS post1
+		GROUP BY  spj1.n_det )AS post1
 	RIGHT JOIN (
 		SELECT n_q, n_izd, n_det, (kol*?) kol_need
 		FROM pmib6602.q
