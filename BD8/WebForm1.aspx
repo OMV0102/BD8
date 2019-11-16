@@ -42,7 +42,7 @@ ORDER BY n_izd"></asp:SqlDataSource>
         <p>
             &nbsp;</p>
         <p>
-            <asp:GridView ID="GridView1" runat="server" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" AutoGenerateColumns="False" DataKeyNames="n_det" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Font-Size="X-Large" EnableSortingAndPagingCallbacks="True" AllowSorting="True" Caption="Детали, которых не хватает:" EnableViewState="False">
+            <asp:GridView ID="GridView1" runat="server" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" AutoGenerateColumns="False" DataKeyNames="n_det" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Font-Size="X-Large" EnableSortingAndPagingCallbacks="True" AllowSorting="True" Caption="Детали, которых не хватает:" EnableViewState="False" HorizontalAlign="Center" Width="790px">
                 <AlternatingRowStyle BackColor="PaleGoldenrod" />
                 <Columns>
                     <asp:BoundField DataField="n_det" HeaderText="№ детали" ReadOnly="True" SortExpression="n_det" />
@@ -62,23 +62,38 @@ ORDER BY n_izd"></asp:SqlDataSource>
             </asp:GridView>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:studentsConnectionString %>" ProviderName="<%$ ConnectionStrings:studentsConnectionString.ProviderName %>" SelectCommand="SELECT *
 FROM pmib6602.p
-WHERE n_det IN (
-	SELECT post1.n_det
-	FROM(
-		SELECT spj1.n_det, SUM(kol) kol_post
-		FROM pmib6602.spj1
-		WHERE spj1.n_izd = TRIM(?)
-		GROUP BY  spj1.n_det )AS post1
-	RIGHT JOIN (
-		SELECT n_q, n_izd, n_det, (kol*?) kol_need
-		FROM pmib6602.q
-		WHERE n_izd = TRIM(?)) AS norma ON norma.n_det = post1.n_det
-	WHERE NOT(kol_post &gt;= kol_need))
-ORDER BY p.n_det">
+WHERE n_det IN
+(
+	SELECT q1.n_det
+	FROM pmib6602.q q1
+	WHERE n_izd = TRIM(?) AND 
+                  NOT
+	(
+		(? * kol) &lt;=
+		((
+			SELECT SUM(kol) kol_post /*кол-во поставленных деталей*/
+			FROM pmib6602.spj1
+			WHERE spj1.n_izd = TRIM(?) AND spj1.n_det = q1.n_det
+			GROUP BY spj1.n_det 
+		)
+		- /*минус уже потраченные детали*/
+		(
+			SELECT (kol * 
+				(SELECT SUM(kol) /*кол-во произведенных изделий*/
+				FROM pmib6602.w
+				WHERE n_izd = TRIM(?)))
+			FROM pmib6602.q
+			WHERE n_izd = TRIM(?) AND q.n_det = q1.n_det
+		))
+	) 
+)
+ORDER BY n_det">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="izd1" PropertyName="SelectedValue" Type="String" />
-                    <asp:ControlParameter ControlID="TextBox2" DefaultValue="1" Name="kol1" PropertyName="Text" Type="Int32" />
+                    <asp:ControlParameter ControlID="TextBox2" DefaultValue="0" Name="kol1" PropertyName="Text" Type="Int32" />
                     <asp:ControlParameter ControlID="DropDownList1" DefaultValue="" Name="izd2" PropertyName="SelectedValue" Type="String" />
+                    <asp:ControlParameter ControlID="DropDownList1" Name="izd3" PropertyName="SelectedValue" Type="String" />
+                    <asp:ControlParameter ControlID="DropDownList1" Name="izd4" PropertyName="SelectedValue" Type="String" />
                 </SelectParameters>
             </asp:SqlDataSource>
         </p>
