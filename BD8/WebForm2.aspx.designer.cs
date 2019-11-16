@@ -69,6 +69,15 @@ namespace BD8
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource3;
 
         /// <summary>
+        /// Label6 элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label6;
+
+        /// <summary>
         /// Label3 элемент управления.
         /// </summary>
         /// <remarks>
@@ -96,13 +105,13 @@ namespace BD8
         protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
-        /// Button3 элемент управления.
+        /// Label5 элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
         /// txtlog элемент управления.
@@ -114,6 +123,15 @@ namespace BD8
         protected global::System.Web.UI.WebControls.TextBox txtlog;
 
         /// <summary>
+        /// Button3 элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button3;
+
+        /// <summary>
         /// GridView2 элемент управления.
         /// </summary>
         /// <remarks>
@@ -121,6 +139,15 @@ namespace BD8
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView2;
+
+        /// <summary>
+        /// GridView3 элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView3;
 
         /// <summary>
         /// SqlDataSource1 элемент управления.

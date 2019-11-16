@@ -20,7 +20,6 @@ namespace BD8
         protected void Button1_Click(object sender, EventArgs e)
         {
 
-
             // Создаем объект подключения
             conn = new OdbcConnection();
             // Задаем параметр подключения – имя ODBC-источника
@@ -38,10 +37,12 @@ namespace BD8
                 if(Int32.TryParse(TextBox2.Text.ToString(), out chislo) == false)
                 {
                     check = false;
+                    txtlog.Text = "Введенно некорректное число!\n";
                 }
             }
             else
             {
+                txtlog.Text = "Не введенно число!\n";
                 check = false;
             }
 
@@ -96,6 +97,7 @@ namespace BD8
                         txtlog.Text += "Транзакция завершена\n";
                         tx.Commit();
                         txtlog.Text += "Обработано " + i + " запис(ь/и/ей)\n";
+                        GridView3.Visible = true;
                     }
                     catch (Exception ex)
                     {
@@ -113,13 +115,18 @@ namespace BD8
             // Закрываем соединение
             conn.Close();
 
+            //правую таблицу после запроса всегда обновляем
+            GridView3.EditIndex = -1;
+            GridView3.DataBind();
+
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            GridView3.Visible = false;
         }
 
+        //кнопка выполнить запрос
         protected void Button2_Click(object sender, EventArgs e)
         {
             // Перейти на другую Web-форму, сохранив состояние отображения.
@@ -129,13 +136,22 @@ namespace BD8
         //кнопка обновления таблицы
         protected void Button3_Click(object sender, EventArgs e)
         {
+            GridView3.Visible = false;
             GridView2.EditIndex = -1;
             GridView2.DataBind();
+            GridView3.EditIndex = -1;
+            GridView3.DataBind();
         }
 
-        protected void GridView2_DataBinding(object sender, EventArgs e)
+
+        protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
         {
             
+        }
+
+        protected void GridView3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -26,6 +26,7 @@
             <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:studentsConnectionString3 %>" ProviderName="<%$ ConnectionStrings:studentsConnectionString3.ProviderName %>" SelectCommand="SELECT DISTINCT n_izd
 FROM pmib6602.j
 ORDER BY n_izd"></asp:SqlDataSource>
+            <asp:Label ID="Label6" runat="server" Text="(Обновите таблицу, выбора изделия из списка)"></asp:Label>
         </p>
         <p style="margin-left: 120px">
 &nbsp;&nbsp;&nbsp;
@@ -36,14 +37,38 @@ ORDER BY n_izd"></asp:SqlDataSource>
         <p>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="Button1" runat="server" Font-Bold="True" Font-Italic="False" Font-Size="Large" OnClick="Button1_Click" Text="Выполнить запрос" Width="270px" />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="Button3" runat="server" Font-Bold="True" Font-Italic="False" Font-Size="Large" OnClick="Button3_Click" Text="Обновить таблицу" Width="270px" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="Label5" runat="server" Text="(Обновите таблицу, перед выполнением запроса)"></asp:Label>
         </p>
         <p>
             <asp:TextBox ID="txtlog" runat="server" BorderWidth="2px" Font-Size="Large" Height="55px" Width="420px" Font-Bold="True" TextMode="MultiLine"></asp:TextBox>
         </p>
         <p>
-            <asp:GridView ID="GridView2" runat="server" AllowSorting="True" AutoGenerateColumns="False" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="2px" Caption="Поставки по выбранному изделию:" CellPadding="2" DataKeyNames="n_spj" DataSourceID="SqlDataSource1" EnableViewState="False" Font-Size="Large" ForeColor="Black" HorizontalAlign="Center" OnDataBinding="GridView2_DataBinding">
+            <asp:Button ID="Button3" runat="server" Font-Bold="True" Font-Italic="False" Font-Size="Large" OnClick="Button3_Click" Text="Обновить таблицу" Width="270px" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </p>
+        <p>
+            <asp:GridView ID="GridView2" runat="server" AllowSorting="True" AutoGenerateColumns="False" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="2px" Caption="Поставки по выбранному изделию:" CellPadding="2" DataKeyNames="n_spj" DataSourceID="SqlDataSource1" Font-Size="Large" ForeColor="Black" HorizontalAlign="Left" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" Width="615px">
+                <AlternatingRowStyle BackColor="PaleGoldenrod" />
+                <Columns>
+                    <asp:BoundField DataField="n_spj" HeaderText="№ поставки" ReadOnly="True" SortExpression="n_spj" />
+                    <asp:BoundField DataField="n_post" HeaderText="№ поставщика" SortExpression="n_post" />
+                    <asp:BoundField DataField="n_det" HeaderText="№ детали" SortExpression="n_det" />
+                    <asp:BoundField DataField="n_izd" HeaderText="№ изделия" SortExpression="n_izd" />
+                    <asp:BoundField DataField="kol" HeaderText="Кол-во деталей" SortExpression="kol" />
+                    <asp:BoundField DataField="date_post" HeaderText="Дата" SortExpression="date_post" />
+                    <asp:BoundField DataField="cost" HeaderText="Цена за 1 дет." SortExpression="cost" />
+                </Columns>
+                <FooterStyle BackColor="Tan" />
+                <HeaderStyle BackColor="Tan" Font-Bold="True" />
+                <PagerStyle BackColor="PaleGoldenrod" ForeColor="DarkSlateBlue" HorizontalAlign="Center" />
+                <SelectedRowStyle BackColor="DarkSlateBlue" ForeColor="GhostWhite" />
+                <SortedAscendingCellStyle BackColor="#FAFAE7" />
+                <SortedAscendingHeaderStyle BackColor="#DAC09E" />
+                <SortedDescendingCellStyle BackColor="#E1DB9C" />
+                <SortedDescendingHeaderStyle BackColor="#C2A47B" />
+            </asp:GridView>
+            <asp:GridView ID="GridView3" runat="server" AllowSorting="True" AutoGenerateColumns="False" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="2px" Caption="Поставки после выполнения запроса:" CellPadding="2" DataKeyNames="n_spj" DataSourceID="SqlDataSource1" Font-Size="Large" ForeColor="Black" HorizontalAlign="Right" OnSelectedIndexChanged="GridView3_SelectedIndexChanged" Visible="False" Width="615px">
                 <AlternatingRowStyle BackColor="PaleGoldenrod" />
                 <Columns>
                     <asp:BoundField DataField="n_spj" HeaderText="№ поставки" ReadOnly="True" SortExpression="n_spj" />
