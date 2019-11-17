@@ -52,16 +52,19 @@ namespace BD8
                 string strSQL =
                 " UPDATE pmib6602.spj1 " +
                 " SET kol = kol + ? " +
-                " WHERE CAST(TRIM(LEADING 'N' FROM n_spj) AS INT) IN ( " +
-                    " SELECT MAX(CAST(TRIM(LEADING 'N' FROM spj1.n_spj) AS int)) n_spj " +
-                    " FROM pmib6602.spj1 " +
-                    " JOIN ( " +
-                        " SELECT n_det, MAX(date_post) date_last " +
+                " WHERE n_spj IN " +
+                " ( " +
+                    " SELECT " +
+                    " ( " +
+                        " SELECT n_spj " +
                         " FROM pmib6602.spj1 " +
-                        " WHERE n_izd = TRIM(?) " +
-                        " GROUP BY n_det) AS tab ON tab.n_det = spj1.n_det " +
-                    " WHERE date_post = date_last " +
-                    " GROUP BY spj1.n_det) ";
+                        " WHERE spj1.n_det = q.n_det AND spj1.n_izd = q.n_izd " +
+                        " ORDER BY spj1.date_post DESC, CAST(TRIM(LEADING 'N' FROM spj1.n_spj) AS INT) DESC " +
+                        " LIMIT 1 " +
+                    " ) " +
+                    " FROM pmib6602.q " +
+                    " WHERE q.n_izd = TRIM(?) " +
+                " ) ";
 
                 // Создаем объект запроса
                 using (OdbcCommand cmd = new OdbcCommand(strSQL, conn))
