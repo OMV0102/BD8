@@ -107,11 +107,12 @@ namespace BD8
                     {
                         // При возникновении любой ошибки 
                         // Формируем сообщение об ошибке 
-                        txtlog.Text += "Транзакция не завершена, произошла ошибка...\n";
+                        txtlog.Text += "Произошла ошибка...\n";
                         txtlog.Text += ex.Message;
                         txtlog.Text += "\n";
                         // выполняем откат транзакции 
                         tx.Rollback();
+                        GridView3.Visible = true;
                     }
                 }
             }
