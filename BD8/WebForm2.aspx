@@ -41,12 +41,12 @@ ORDER BY n_izd"></asp:SqlDataSource>
             <asp:Label ID="Label5" runat="server" Text="(Обновите таблицу, перед выполнением запроса)"></asp:Label>
         </p>
         <p>
-            <asp:TextBox ID="txtlog" runat="server" BorderWidth="2px" Font-Size="Large" Height="55px" Width="420px" Font-Bold="True" TextMode="MultiLine"></asp:TextBox>
+            <asp:TextBox ID="txtlog" runat="server" BorderWidth="2px" Font-Size="Large" Height="55px" Width="420px" Font-Bold="True" TextMode="MultiLine" ReadOnly="True"></asp:TextBox>
         </p>
         <p>
             <asp:Button ID="Button3" runat="server" Font-Bold="True" Font-Italic="False" Font-Size="Large" OnClick="Button3_Click" Text="Обновить таблицу" Width="270px" />
         </p>
-        <p style="margin-left: 480px">
+        <p style="margin-left: 400px">
             <asp:Label ID="Label7" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Поставки по выбранному изделию" EnableTheming="True" Font-Underline="True"></asp:Label>
         </p>
         <p>

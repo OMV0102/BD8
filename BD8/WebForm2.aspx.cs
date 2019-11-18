@@ -17,6 +17,7 @@ namespace BD8
             txtlog.Text = "";
         }
 
+        //кнопка Выполнить запрос
         protected void Button1_Click(object sender, EventArgs e)
         {
 
@@ -37,12 +38,12 @@ namespace BD8
                 if(Int32.TryParse(TextBox2.Text.ToString(), out chislo) == false)
                 {
                     check = false;
-                    txtlog.Text = "Введенно некорректное число!\n";
+                    txtlog.Text = "Введено некорректное число!\n";
                 }
             }
             else
             {
-                txtlog.Text = "Не введенно число!\n";
+                txtlog.Text = "Не введено число!\n";
                 check = false;
             }
 
@@ -124,6 +125,7 @@ namespace BD8
 
         }
 
+        //выпадающий список
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
             GridView3.Visible = false;
